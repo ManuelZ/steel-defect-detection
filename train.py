@@ -22,7 +22,7 @@ from config import SteelConfig
 def run_length_encoded_to_mask(encoded_pixels, h, w):
     """ Transform a line of Run Length Encoded pixels into a binary mask """
     
-    encoded_pixels = np.asarray(encoded_pixels.split(), dtype=np.int)
+    encoded_pixels = np.asarray(encoded_pixels.split(), dtype=np.uint8)
     starts = encoded_pixels[0::2]
     lengths = encoded_pixels[1::2]
 
@@ -97,7 +97,7 @@ class SteelDataset(Dataset):
 
         class_ids = subdf['ClassId'].to_numpy()
 
-        return mask_tensor.astype(np.bool), class_ids
+        return mask_tensor, class_ids
 
 
 if __name__ == '__main__':
