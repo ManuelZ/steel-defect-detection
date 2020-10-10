@@ -50,3 +50,6 @@ class SteelConfig(Config):
 
     # Number of validation steps to run at the end of every training epoch.
     VALIDATION_STEPS = 50
+
+    # Parameter added by me
+    NUM_EPOCHS = 30
