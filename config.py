@@ -39,6 +39,9 @@ class SteelConfig(Config):
     # For GPUs with not so much memory, use 1
     IMAGES_PER_GPU = 1
 
+    # Batch size = GPU_COUNT * IMAGES_PER_GPU
+    GPU_COUNT = 1
+
     # Number of classes (including background)
     NUM_CLASSES = 1 + 4
 
@@ -46,10 +49,12 @@ class SteelConfig(Config):
     DETECTION_MIN_CONFIDENCE = 0.9
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 100
+    STEPS_PER_EPOCH = 1000
 
     # Number of validation steps to run at the end of every training epoch.
     VALIDATION_STEPS = 50
 
     # Parameter added by me
-    NUM_EPOCHS = 30
+    NUM_EPOCHS = 5
+
+    LEARNING_RATE = 0.0001
