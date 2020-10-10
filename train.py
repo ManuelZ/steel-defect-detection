@@ -1,5 +1,20 @@
+"""
+Steel Defect Detection with Mask-RCNN - Training
+Script that trains Mask-RCNN on the Kaggle's Steel Defect Detection dataset to
+identify four types of steel defects.
+------------------------------------------------------------
+Usage:
+    # Train with COCO pre-trained weights
+    python train.py --model default
+    
+    # Train with the last available trained weights
+    python train.py --model last
+"""
+
+
 # Built-in imports
 import sys
+import argparse
 
 # External imports
 import numpy as np
@@ -104,7 +119,16 @@ class SteelDataset(Dataset):
 
 
 if __name__ == '__main__':
-   
+
+    parser = argparse.ArgumentParser(
+        description='Train Mask R-CNN on steel data'
+    )
+
+    parser.add_argument('--model', required=True,
+                        help="'last' or 'default'"
+    )
+    args = parser.parse_args()
+
     data = pd.read_csv(str(CSV_FILE))
 
     # Keep only the images with defects
@@ -122,18 +146,23 @@ if __name__ == '__main__':
     data_val.prepare()
 
     steel_config = SteelConfig()
-    
+
     model = MaskRCNN(
         mode="training",
         config=steel_config,
         model_dir=str(MODEL_DIR)
     )
     
+    if args.model.lower() == "last":
+        model_path = model.find_last() # Find last trained weights
+    elif args.model.lower() == "default":
+        model_path = str(COCO_MODEL_PATH)
+    
     # Exclude the last layers because they require a matching number of classes
     # ^ Original comment at:
     # https://github.com/matterport/Mask_RCNN/blob/master/samples/balloon/balloon.py
     model.load_weights(
-        filepath=str(COCO_MODEL_PATH),
+        filepath=model_path,
         by_name=True,
         exclude=[
             "mrcnn_class_logits", 
