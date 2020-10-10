@@ -96,7 +96,7 @@ class SteelDataset(Dataset):
             mask_tensor[:, :, i] = mask
 
         class_ids = subdf['ClassId'].to_numpy()
-
+        
         return mask_tensor, class_ids
 
 
@@ -115,7 +115,7 @@ if __name__ == '__main__':
     data_train.prepare()
 
     data_val = SteelDataset(df_defects)
-    data_train.load_dataset(val_ids, TRAIN_IMAGES_DIR) # val images are in the train dir
+    data_val.load_dataset(val_ids, TRAIN_IMAGES_DIR) # val images are in the train dir
     data_val.prepare()
 
     steel_config = SteelConfig()
