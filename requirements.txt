@@ -1,0 +1,2 @@
+# Specific version only to avoid a particular console-polluting warning
+scikit-image==0.16.2
