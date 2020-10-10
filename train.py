@@ -144,6 +144,6 @@ if __name__ == '__main__':
         data_train,
         data_val,
         learning_rate=steel_config.LEARNING_RATE,
-        epochs=30, 
+        epochs=steel_config.NUM_EPOCHS, 
         layers="heads"
     )
