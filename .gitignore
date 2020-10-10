@@ -1,10 +1,13 @@
 # VSCode
-.vscode/settings.json
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Pytest
+.pytest_cache
 
 # Jupyter Notebook
 .ipynb_checkpoints
