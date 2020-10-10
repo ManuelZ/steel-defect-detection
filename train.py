@@ -21,8 +21,11 @@ from config import SteelConfig
 
 def run_length_encoded_to_mask(encoded_pixels, h, w):
     """ Transform a line of Run Length Encoded pixels into a binary mask """
-    
-    encoded_pixels = np.asarray(encoded_pixels.split(), dtype=np.uint8)
+
+    # These integers will be used to fill the linear mask (by slicing an array
+    # like: myarray[start:start+length]), they should have a large enough max 
+    # value so that their sum doesn't overflow, hence uint32
+    encoded_pixels = np.asarray(encoded_pixels.split(), dtype=np.uint32)
     starts = encoded_pixels[0::2]
     lengths = encoded_pixels[1::2]
 
