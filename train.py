@@ -9,6 +9,13 @@ Usage:
     
     # Train with the last available trained weights
     python train.py --model last
+
+
+To see the training scores:
+    tensorboard --logdir=D:\Datasets\steel-defects-detection\models
+
+And navigate to:
+    localhost:6006
 """
 
 
@@ -148,9 +155,9 @@ if __name__ == '__main__':
     steel_config = SteelConfig()
 
     model = MaskRCNN(
-        mode="training",
-        config=steel_config,
-        model_dir=str(MODEL_DIR)
+        mode      = "training",
+        config    = steel_config,
+        model_dir = str(MODEL_DIR)
     )
     
     if args.model.lower() == "last":
@@ -162,9 +169,9 @@ if __name__ == '__main__':
     # ^ Original comment at:
     # https://github.com/matterport/Mask_RCNN/blob/master/samples/balloon/balloon.py
     model.load_weights(
-        filepath=model_path,
-        by_name=True,
-        exclude=[
+        filepath = model_path,
+        by_name  = True,
+        exclude  = [
             "mrcnn_class_logits", 
             "mrcnn_bbox_fc", 
             "mrcnn_bbox", 
@@ -173,9 +180,9 @@ if __name__ == '__main__':
     )
 
     model.train(
-        data_train,
-        data_val,
-        learning_rate=steel_config.LEARNING_RATE,
-        epochs=steel_config.NUM_EPOCHS, 
-        layers="heads"
+        train_dataset = data_train,
+        val_dataset   = data_val,
+        learning_rate = steel_config.LEARNING_RATE,
+        epochs        = steel_config.NUM_EPOCHS, 
+        layers        = "heads"
     )
