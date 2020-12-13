@@ -62,3 +62,26 @@ class SteelConfig(Config):
     NUM_EPOCHS = 5
 
     LEARNING_RATE = 0.0001
+
+
+class InferenceConfig(SteelConfig):
+    # Set batch size to 1 since we'll be running inference on
+    # one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
+    GPU_COUNT = 1
+    IMAGES_PER_GPU = 1
+
+YELLOW = [249, 192, 12]
+BLUE   = [0, 185, 241]
+PURPLE = [114, 0, 218]
+RED    = [249,50,12]
+
+
+
+DEFECTS = [
+    {'name': 'Type 1', 'color': YELLOW}, 
+    {'name': 'Type 2', 'color': BLUE}, 
+    {'name': 'Type 3', 'color': PURPLE}, 
+    {'name': 'Type 4', 'color': RED}
+]
+
+CLASS_NAMES = [d['name'] for d in DEFECTS]
