@@ -14,3 +14,12 @@ It's basically cloning a fork —created by [Adam Kelly](https://github.com/akTw
 
 ## How to use Mask-RCNN with Tensorflow 2 on Linux
 Same as on Windows. But gotta modify the code in model.py, in train(), when calling keras_model.fit and set workers to zero (one also works). 
+
+
+## How to start a [Deep Learning container](https://github.com/ManuelZ/Deep-Learning-Docker)
+
+    sudo docker create --gpus all -it --volume /home/user/steel-defect-detection:/root/steel-defect-detection --name dl-container dl
+
+    sudo docker container start --interactive dl-container
+
+
