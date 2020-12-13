@@ -34,10 +34,13 @@ class SteelConfig(Config):
     NAME = 'steel'
     
     # Either 'resnet50' or 'resnet101'
+    # With 8GB of RAM and a GTX1060 only resnet50 works, otherwise it
+    # just quits without even starting.
+    # With 16 GB pf RAM both resnet50 and resnet101 work
     BACKBONE = 'resnet50'
     
     # For GPUs with not so much memory, use 1
-    IMAGES_PER_GPU = 1
+    IMAGES_PER_GPU = 1 
 
     # Batch size = GPU_COUNT * IMAGES_PER_GPU
     GPU_COUNT = 1
