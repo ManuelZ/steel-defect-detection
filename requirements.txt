@@ -1,2 +1,3 @@
 # Specific version only to avoid a particular console-polluting warning
+# https://stackoverflow.com/a/62330691
 scikit-image==0.16.2
