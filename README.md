@@ -37,7 +37,14 @@ Same as on Windows. But gotta modify the code in `model.py`, in `train()`, when 
 
     sudo docker container start --interactive dl-container
 
-# How to run Tensorboard
-    
-    tensorboard --logdir /root/steel-defect-detection/data
+## How to run Tensorboard
+
+### Allow connections through the firewall (in case it's active)  
+Read [this answer](https://stackoverflow.com/a/54064225)
+
+    sudo ufw allow out on docker0 from 172.17.0.0/16
+
+### Actually run Tensorboard
+
+    sudo docker run -d -p 6006:6006 -v ~/steel-defect-detection/data:/root/steel-defect-detection/data tensorflow/tensorflow:2.3.1-gpu tensorboard --bind_all --logdir /root/steel-defect-detection/data    
 
