@@ -37,3 +37,7 @@ Same as on Windows. But gotta modify the code in `model.py`, in `train()`, when 
 
     sudo docker container start --interactive dl-container
 
+# How to run Tensorboard
+    
+    tensorboard --logdir /root/steel-defect-detection/data
+
