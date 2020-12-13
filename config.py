@@ -7,7 +7,7 @@ from mrcnn.config import Config
 
 
 # Directory where the data and pre-trained weight files are located
-ROOT_DIR = Path('E:\Datasets\steel-defects-detection')
+ROOT_DIR = Path('/root/steel-defect-detection/data')
 
 # Directory to save logs and trained model
 MODEL_DIR = ROOT_DIR / 'models'
@@ -34,7 +34,7 @@ class SteelConfig(Config):
     NAME = 'steel'
     
     # Either 'resnet50' or 'resnet101'
-    BACKBONE = 'resnet101'
+    BACKBONE = 'resnet50'
     
     # For GPUs with not so much memory, use 1
     IMAGES_PER_GPU = 1
@@ -49,6 +49,7 @@ class SteelConfig(Config):
     DETECTION_MIN_CONFIDENCE = 0.9
 
     # Number of training steps per epoch
+    # Should actually be (number of examples // batch size)
     STEPS_PER_EPOCH = 1000
 
     # Number of validation steps to run at the end of every training epoch.
