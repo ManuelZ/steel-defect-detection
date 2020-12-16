@@ -33,7 +33,7 @@ Same as on Windows. But gotta modify the code in `model.py`, in `train()`, when 
 
 ## How to start a [Deep Learning container](https://github.com/ManuelZ/Deep-Learning-Docker)
 
-    sudo docker create --gpus all -it --volume /home/user/steel-defect-detection:/root/steel-defect-detection --name dl-container dl
+    sudo docker create --gpus all -it --volume /home/user/steel-defect-detection:/root/steel-defect-detection -p 8888:8888 --name dl-container dl
 
     sudo docker container start --interactive dl-container
 
@@ -48,3 +48,9 @@ Read [this answer](https://stackoverflow.com/a/54064225)
 
     sudo docker run -d -p 6006:6006 -v ~/steel-defect-detection/data:/root/steel-defect-detection/data tensorflow/tensorflow:2.3.1-gpu tensorboard --bind_all --logdir /root/steel-defect-detection/data    
 
+
+## How to run Jupyter
+
+    jupyter notebook --allow-root --ip 0.0.0.0 
+
+    
